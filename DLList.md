@@ -16,7 +16,6 @@ public class DLList implements ListInterface<Candy> {
 	private boolean changed = false;
 	private DLLNode<E> [] findArray = [];
 
-
 	@Override
 	public void add(Candy element) {
 
