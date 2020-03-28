@@ -19,20 +19,34 @@ public class DLListB<E> implements ListInterface<Candy> {
 	@Override
 	public void add(E element) {
 		
+		DLLNode<E> newNode = new DLLNode<E>(Element);
+		
+		
 		if(numElements == 0) {
-
-			element.setPrev(null);
-			element.setNext(null);
-			head = element;
-			tail = element;
-
+			tail = newNode;
+			head = newNode;
 		}
-
+		else if (element.compareTo(head.getInfo()) < 0) {
+			head.setPrev(newNode);
+			newNode.setNext(head);
+			head = newNode;
+		}
+		else if (element.compareTo(tail.getInfo() >= 0)){
+			tail.setNext(newNode);
+			newNode.setPrev(tail);
+			tail = newNode;
+		}
 		else {
-			element.setPrev(tail);
-			element.setNext(null);
-			tail = element;
-
+			DLLNode<E> addPtr = head.getNext();
+			while (addPtr.getNext() != null) {
+				if (element.compareTo(addPtr.getInfo()) < 0) {
+					addPtr.getPrev().setNext(newNode);
+					newNode.setPrev(addPtr.getPrev());
+					newNode.setNext(addPtr);
+					addPtr.setPrev(newNode());
+					break;
+				}
+			}
 		}
 
 		numElements++;
@@ -148,6 +162,7 @@ public class DLListB<E> implements ListInterface<Candy> {
 	public void find2(Candy element) {
 		if (changed){
 			populateFindArray();
+			changed = false;
 		}
 	}
 	

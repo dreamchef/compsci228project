@@ -8,6 +8,8 @@ public class DLLNode <E> {
 	
 	public DLLNode<E>(E info){
 		this.info = info;
+		next = null;
+		prev = null;
 	}
 	
 	public E getInfo() {
@@ -33,25 +35,5 @@ public class DLLNode <E> {
 	public void setPrev(DLLNode prev) {
 		this.prev = prev;
 	}
-	/*
-	@Override
-	public boolean equals(Object element) {
-		
-		boolean equals;
-		
-		if(element instanceof Object) {
-			if (this.name.compareToIgnoreCase(( (Candy) (element) ).getName()) == 0)
-				equals = true;
-			else
-				equals = false;
-		}
-		
-		else
-			equals = false;
-		
-		return equals;
-	
-	}
-	*/
 	
 }
