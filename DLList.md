@@ -154,6 +154,13 @@ public class DLList implements ListInterface<Candy> {
 		}
 	}
 	
+	public void find2(Candy element) {
+	
+	
+	
+	
+	}
+	
 	@Override
 	public String toString() {
 		
