@@ -13,6 +13,7 @@ public class DLList implements ListInterface<Candy> {
 	private static Candy item;
 	private static int numElements = 0;
 	private static boolean found;
+	private static boolean changed = false;
 
 
 	@Override
