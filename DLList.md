@@ -5,7 +5,7 @@ import elements.*;
 
 public class DLList implements ListInterface<Candy> {
 
-	private static Candy head = null;
+	private Candy head = null;
 	private Candy tail = null;
 	private Candy location = null;
 	private Candy forwardIterator = head;
@@ -14,6 +14,7 @@ public class DLList implements ListInterface<Candy> {
 	private int numElements = 0;
 	private boolean found;
 	private boolean changed = false;
+	private DLLNode<E> [] findArray = [];
 
 
 	@Override
