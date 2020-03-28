@@ -1,35 +1,35 @@
 package elements;
 
-public class Candy {
+public class DLLNode <E> {
 
-	String name;
-	Candy next;
-	Candy prev;
+	private E info;
+	private DLLNode<E> next;
+	private DLLNode<E> prev;
 	
-	public String getName() {
-		return name;
+	public E getInfo() {
+		return info;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setInfo(E info) {
+		this.info = info;
 	}
 	
-	public Candy getNext() {
+	public DLLNode getNext() {
 		return next;
 	}
 	
-	public void setNext(Candy next) {
+	public void setNext(DLLNode next) {
 		this.next = next;
 	}
 	
-	public Candy getPrev() {
+	public DLLNode getPrev() {
 		return prev;
 	}
 	
-	public void setPrev(Candy prev) {
+	public void setPrev(DLLNode prev) {
 		this.prev = prev;
 	}
-	
+	/*
 	@Override
 	public boolean equals(Object element) {
 		
@@ -48,6 +48,6 @@ public class Candy {
 		return equals;
 	
 	}
-	
+	*/
 	
 }
