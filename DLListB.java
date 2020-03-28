@@ -17,6 +17,8 @@ public class DLListB<E> implements ListInterface<Candy> {
 	private boolean useBinarySearch;
 	
 	public DLLListB<E>(){
+		head = null;
+		tail = null;
 		changed = false;
 		useBinarySearch = false;
 		numElements = 0;
