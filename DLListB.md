@@ -148,7 +148,6 @@ public class DLListB<E> implements ListInterface<Candy> {
 	public void find2(Candy element) {
 		if (changed){
 			populateFindArray();
-			sortFindArray();
 		}
 	}
 	
@@ -163,10 +162,6 @@ public class DLListB<E> implements ListInterface<Candy> {
 				sortPtr = sortPtr.getNext();
 			}
 		}			
-	}
-	
-	public void sortFindArray(){
-		
 	}
 	
 	@Override
