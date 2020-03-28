@@ -19,6 +19,8 @@ public class DLListB<E> implements ListInterface<Candy> {
 	public DLLListB<E>(){
 		head = null;
 		tail = null;
+		forwardIterator = head;
+		backwardIterator = tail;
 		changed = false;
 		useBinarySearch = false;
 		numElements = 0;
