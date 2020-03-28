@@ -10,7 +10,6 @@ public class DLListB<E> implements ListInterface<Candy> {
 	private DLLNode<E> location = null;
 	private DLLNode<E> forwardIterator = head;
 	private DLLNode<E> backwardIterator = tail;
-	private Candy E;
 	private DLLNode<E> location;
 	private int numElements = 0;
 	private boolean found;
