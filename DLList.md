@@ -165,7 +165,7 @@ public class DLList implements ListInterface<Candy> {
 	public String toString() {
 
 		String output = "";
-		Candy ptr = head;
+		E ptr = head;
 
 		if(numElements <= 1)
 
