@@ -14,6 +14,7 @@ public class DLListB<E> implements ListInterface<Candy> {
 	private int numElements = 0;
 	private boolean found;
 	private boolean changed = false; 
+	private E[] findArray;
 	
 	@Override
 	public void add(E element) {
@@ -145,6 +146,26 @@ public class DLListB<E> implements ListInterface<Candy> {
 	}
 	
 	public void find2(Candy element) {
+		if (changed){
+			populateFindArray();
+			sortFindArray();
+		}
+	}
+	
+	
+	public void populateFindArray(){
+		if (numElements > 0){
+			DLLNode sortPtr = head;
+			findArray = new E[numElements];
+			int i = 0;
+			for (int i = 0; i < findArray.length; i++){
+				findArray[i] = sortPtr.getInfo();
+				sortPtr = sortPtr.getNext();
+			}
+		}			
+	}
+	
+	public void sortFindArray(){
 		
 	}
 	
