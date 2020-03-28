@@ -6,6 +6,10 @@ public class DLLNode <E> {
 	private DLLNode<E> next;
 	private DLLNode<E> prev;
 	
+	public DLLNode<E>(E info){
+		this.info = info;
+	}
+	
 	public E getInfo() {
 		return info;
 	}
