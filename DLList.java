@@ -5,19 +5,19 @@ import elements.*;
 
 public class DLList implements ListInterface<Candy> {
 
-	private Candy head = null;
-	private Candy tail = null;
-	private Candy location = null;
-	private Candy forwardIterator = head;
-	private Candy backwardIterator = tail;
-	private Candy item;
+	private DLList<E> head = null;
+	private DLList<E> tail = null;
+	private DLList<E> location = null;
+	private DLList<E> forwardIterator = head;
+	private DLList<E> backwardIterator = tail;
+	private DLList<E> item;
 	private int numElements = 0;
 	private boolean found;
 	private boolean changed = false;
 	private E[] findArray = new E[];
 
 	@Override
-	public void add(Candy element) {
+	public void add(E element) {
 
 		if(numElements == 0) {
 
@@ -40,7 +40,7 @@ public class DLList implements ListInterface<Candy> {
 	}
 
 	@Override
-	public boolean remove(Candy element) {
+	public boolean remove(E element) {
 
 		find(element);
 
@@ -69,7 +69,7 @@ public class DLList implements ListInterface<Candy> {
 	}
 
 	@Override
-	public boolean contains(Candy element) {
+	public boolean contains(E element) {
 
 		find(element);
 
@@ -78,7 +78,7 @@ public class DLList implements ListInterface<Candy> {
 	}
 
 	@Override
-	public Candy get(Candy element) {
+	public E get(E element) {
 
 		find(element);
 
@@ -103,7 +103,7 @@ public class DLList implements ListInterface<Candy> {
 	}
 
 	@Override
-	public Candy getNextItem() {
+	public E getNextItem() {
 
 		item = forwardIterator;
 
@@ -120,7 +120,7 @@ public class DLList implements ListInterface<Candy> {
 		return item;
 	}
 
-	public Candy getPrevItem() {
+	public E getPrevItem() {
 
 		item = backwardIterator;
 
@@ -139,14 +139,14 @@ public class DLList implements ListInterface<Candy> {
 
 	}
 
-	public void find(Candy element) {
+	public void find(E element) {
 
 		found = false;
 		location = head;
 
 		for(int i = 0; i < numElements; i++) {
 
-			if(location.equals(element)) {
+			if(location == element) {
 				found = true;
 				break;
 			}
@@ -154,7 +154,7 @@ public class DLList implements ListInterface<Candy> {
 		}
 	}
 
-	public void find2(Candy element) {
+	public void find2(E element) {
 
 
 
