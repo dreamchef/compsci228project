@@ -5,37 +5,49 @@ import elements.*;
 
 public class DLListB<E> implements ListInterface<Candy> {
 
-	private DLLNode<E> head = null;
-	private DLLNode<E> tail = null;
-	private DLLNode<E> location = null;
-	private DLLNode<E> forwardIterator = head;
-	private DLLNode<E> backwardIterator = tail;
+	private DLLNode<E> head;
+	private DLLNode<E> tail;
 	private DLLNode<E> location;
-	private int numElements = 0;
+	private DLLNode<E> forwardIterator;
+	private DLLNode<E> backwardIterator;
+	private int numElements;
 	private boolean found;
-	private boolean changed = false; 
+	private boolean changed;
 	private E[] findArray;
+	private boolean useBinarySearch;
+	
+	public DLLListB<E>(){
+		changed = false;
+		useBinarySearch = false;
+		numElements = 0;
+	}
 	
 	@Override
 	public void add(E element) {
 		
-		DLLNode<E> newNode = new DLLNode<E>(Element);
+		DLLNode<E> newNode = new DLLNode<E>(Element);		
 		
-		
-		if(numElements == 0) {
+		//on an empty list, new node becomes head and tail
+		if(isEmpty()) {
 			tail = newNode;
 			head = newNode;
 		}
+		
+		//if element is less than current head, element becomes new head
 		else if (element.compareTo(head.getInfo()) < 0) {
 			head.setPrev(newNode);
 			newNode.setNext(head);
 			head = newNode;
 		}
+		
+		//if element is greater than current tail, element becomes new tail
 		else if (element.compareTo(tail.getInfo() >= 0)){
 			tail.setNext(newNode);
 			newNode.setPrev(tail);
 			tail = newNode;
 		}
+		
+		//if element is in the middle, insert it at the correct place
 		else {
 			DLLNode<E> addPtr = head.getNext();
 			while (addPtr.getNext() != null) {
@@ -53,29 +65,37 @@ public class DLListB<E> implements ListInterface<Candy> {
 		changed = true;
 		
 	}
+	
+	//allows user to switch between find and find2
+	public void setBinarySearch(boolean useBinarySearch) {
+		this.useBinarySearch = useBinarySearch;
+	}
 
+	
 	@Override
 	public boolean remove(E element) {
+		if (isEmpty()) {
+			return false;
+		}
 		
-		find2(element);
+		find(element);
 		
 		if(!(found))
 			return false;
-		else {
-			
+		else {			
 			location.getPrev().setNext(location.getNext());
 			location.getNext().setPrev(location.getPrev());
 			changed = true;
-		
+			numElements--;
 			return true;
 		}
 		
 	}
 
 	@Override
-	public int size() {
-	
-		return numElements;
+	public int size() {	
+		
+		return numElements;		
 		
 	}
 
@@ -88,8 +108,11 @@ public class DLListB<E> implements ListInterface<Candy> {
 
 	@Override
 	public boolean contains(E element) {
-		
-		find2(element);
+		if (isEmpty()) {
+			found = false;
+			return found;
+		}
+		find(element);
 		
 		return found;
 		
@@ -97,41 +120,43 @@ public class DLListB<E> implements ListInterface<Candy> {
 
 	@Override
 	public E get(E element) {
-		
-		find2(element);
+		if (isEmpty()) {
+			return null;
+		}
+		find(element);
 		
 		if(!(found))
 			return null;
 		else
-			return location;
+			return location.getInfo();
 		
 	}
 
 	@Override
 	public void resetIterator() {
-		
-		forwardIterator = head;
-		
+		if (!isEmpty()) {
+			forwardIterator = head;
+		}
 	}
 	
 	public void resetBackwardIterator() {
-		
-		backwardIterator = tail;
-		
+		if (!isEmpty()) {
+			backwardIterator = tail;
+		}
 	}
 
 	@Override
 	public E getNextItem() {
+		if (isEmpty()) {
+			return null;
+		}
+		item = forwardIterator.getInfo();
 		
-		item = forwardIterator;
-		
-		if(forwardIterator == tail) {
-			
+		if(forwardIterator == tail) {			
 			forwardIterator = head;
 		}
 			
-		else {
-			
+		else {			
 			forwardIterator = forwardIterator.getNext();
 		}
 		
@@ -141,8 +166,10 @@ public class DLListB<E> implements ListInterface<Candy> {
 	}
 	
 	public E getPrevItem() {
-		
-		item = backwardIterator;
+		if (isEmpty()) {
+			return null;
+		}
+		item = backwardIterator.getInfo();
 		
 		if(backwardIterator == head) {
 			
@@ -158,12 +185,32 @@ public class DLListB<E> implements ListInterface<Candy> {
 		return item;
 
 	}
+	public void find(E element) {
+		if (useBinarySearch) {
+			find2(element);
+		}
+		else {
+			found = false;
+			location = head;
+
+			while (location.getNext() != null) {
+				if (location.getInfo().compareTo(element) == 0) {
+					found = true;
+					break;
+				}
+				location = location.getNext();
+			}
+		}
+	}
 	
-	public void find2(Candy element) {
+	
+	//find2 needs to be completed
+	public void find2(E element) { 
 		if (changed){
 			populateFindArray();
 			changed = false;
 		}
+		
 	}
 	
 	
@@ -171,7 +218,6 @@ public class DLListB<E> implements ListInterface<Candy> {
 		if (numElements > 0){
 			DLLNode sortPtr = head;
 			findArray = new E[numElements];
-			int i = 0;
 			for (int i = 0; i < findArray.length; i++){
 				findArray[i] = sortPtr.getInfo();
 				sortPtr = sortPtr.getNext();
@@ -181,23 +227,26 @@ public class DLListB<E> implements ListInterface<Candy> {
 	
 	@Override
 	public String toString() {
+		if (numElements == 0) {
+			return "empty list";
+		}
 		
 		String output = "";
-		E ptr = head;
+		DLLNode<E> stringPtr = head;
 		
-		if(numElements <= 1)
+		if (numElements == 1)
 		
-			output += ptr.getName();
+			output = output + stringPtr.getInfo();
 		
-		else
+		else {
 			for(int i = 0; i < numElements; i++) {
 				
-				output += ptr.getName() + "\t";
-				ptr = ptr.getNext();
+				output += stringPtr.getInfo() + "\t";
+				ptr = stringPtr.getNext();
 				
+			}
 		}
 		
 		return output;
 	}
-
 }
