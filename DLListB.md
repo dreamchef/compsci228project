@@ -5,18 +5,19 @@ import elements.*;
 
 public class DLListB<E> implements ListInterface<Candy> {
 
-	private static Candy head = null;
-	private static Candy tail = null;
-	private static Candy location = null;
-	private static Candy forwardIterator = head;
-	private static Candy backwardIterator = tail;
-	private static Candy item;
-	private static int numElements = 0;
-	private static boolean found;
-	private static boolean changed = false;
+	private DLLNode<E> head = null;
+	private DLLNode<E> tail = null;
+	private DLLNode<E> location = null;
+	private DLLNode<E> forwardIterator = head;
+	private DLLNode<E> backwardIterator = tail;
+	private Candy E;
+	private DLLNode<E> location;
+	private int numElements = 0;
+	private boolean found;
+	private boolean changed = false; 
 	
 	@Override
-	public void add(Candy element) {
+	public void add(E element) {
 		
 		if(numElements == 0) {
 
@@ -40,7 +41,7 @@ public class DLListB<E> implements ListInterface<Candy> {
 	}
 
 	@Override
-	public boolean remove(Candy element) {
+	public boolean remove(E element) {
 		
 		find2(element);
 		
@@ -72,7 +73,7 @@ public class DLListB<E> implements ListInterface<Candy> {
 	}
 
 	@Override
-	public boolean contains(Candy element) {
+	public boolean contains(E element) {
 		
 		find2(element);
 		
@@ -81,7 +82,7 @@ public class DLListB<E> implements ListInterface<Candy> {
 	}
 
 	@Override
-	public Candy get(Candy element) {
+	public E get(E element) {
 		
 		find2(element);
 		
@@ -106,7 +107,7 @@ public class DLListB<E> implements ListInterface<Candy> {
 	}
 
 	@Override
-	public Candy getNextItem() {
+	public E getNextItem() {
 		
 		item = forwardIterator;
 		
@@ -125,7 +126,7 @@ public class DLListB<E> implements ListInterface<Candy> {
 		
 	}
 	
-	public Candy getPrevItem() {
+	public E getPrevItem() {
 		
 		item = backwardIterator;
 		
@@ -152,7 +153,7 @@ public class DLListB<E> implements ListInterface<Candy> {
 	public String toString() {
 		
 		String output = "";
-		Candy ptr = head;
+		E ptr = head;
 		
 		if(numElements <= 1)
 		
