@@ -160,7 +160,7 @@ public class DLList implements ListInterface<Candy> {
 			location = head;
 			for(int i = 0; i < findArray.length(); i++) {
 				findArray[i] = location.getInfo();
-				location = location.getNext();
+				location.setNext(location.getNext());
 			}
 		}
 
