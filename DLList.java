@@ -155,7 +155,14 @@ public class DLList implements ListInterface<Candy> {
 	}
 
 	public void find2(E element) {
-
+		if (changed = true) {
+			findArray = new E[numElements];
+			location = head;
+			for(int i = 0; i < findArray.length(); i++) {
+				findArray[i] = location.getInfo();
+				location = location.getNext();
+			}
+		}
 
 
 
