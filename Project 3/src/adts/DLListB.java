@@ -18,6 +18,7 @@ public class DLListB<E> implements ListInterface<E> {
 	private boolean useBinarySearch;
 	private boolean nodeRemoved;
 	private DLLNode<E> lastRemovedNode;
+	private int mid;
 
 	public DLListB(boolean useBinarySearch) {
 
@@ -373,11 +374,13 @@ public class DLListB<E> implements ListInterface<E> {
 
 		while (high >= low) {
 
-			int mid = (low + high) / 2;
+			mid = (low + high) / 2;
 			//compCount++;
 
-			DLLNode<E> midNode = new DLLNode<E>(findArray[mid]);
+			DLLNode<E> midNode = new DLLNode(findArray[mid]);
 
+			// E midE = findArray[mid];
+			
 			if ( node.compareTo(midNode) == 0 ) {
 				/*
 				if(node.getIncomparable() == true) {
@@ -385,7 +388,7 @@ public class DLListB<E> implements ListInterface<E> {
 				}
 				 */
 				found = true;
-				location = midNode;
+				// location = midNode;
 
 				//System.out.println("comparison count: " + compCount);
 
@@ -408,7 +411,15 @@ public class DLListB<E> implements ListInterface<E> {
 
 			}
 		}
-
+		
+		location = head;
+		
+		for(int i = 0; i < mid; i++) {
+			
+			location = location.getNext();
+			
+		}
+		
 	}
 
 	public void populateFindArray() {
