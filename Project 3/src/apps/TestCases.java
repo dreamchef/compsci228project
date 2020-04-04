@@ -45,7 +45,7 @@ public class TestCases {
 
 		long start_time = System.nanoTime();
 
-		System.out.println(list.remove(snickers));
+		list.remove(snickers);
 
 		long end_time = System.nanoTime();
 
@@ -61,7 +61,7 @@ public class TestCases {
 
 		long start_time2 = System.nanoTime();
 
-		System.out.println(list.remove("Milky Way"));
+		list.remove("Milky Way");
 
 		long end_time2 = System.nanoTime();
 
@@ -77,7 +77,7 @@ public class TestCases {
 
 		long start_time3 = System.nanoTime();
 
-		System.out.println(list.remove("Milky Way"));
+		list.remove("Milky Way");
 
 		long end_time3 = System.nanoTime();
 
@@ -105,7 +105,7 @@ public class TestCases {
 		
 		long start_time4 = System.nanoTime();
 
-		System.out.println(list2.remove(snickers));
+		list2.remove(snickers);
 
 		long end_time4 = System.nanoTime();
 
@@ -119,7 +119,7 @@ public class TestCases {
 
 		long start_time5 = System.nanoTime();
 
-		System.out.println(list2.remove("Milky Way"));
+		list2.remove("Milky Way");
 
 		long end_time5 = System.nanoTime();
 
@@ -135,7 +135,7 @@ public class TestCases {
 
 		long start_time6 = System.nanoTime();
 
-		System.out.println(list2.remove("Milky Way"));
+		list2.remove("Milky Way");
 
 		long end_time6 = System.nanoTime();
 
